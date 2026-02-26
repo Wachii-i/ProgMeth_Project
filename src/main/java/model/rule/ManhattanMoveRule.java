@@ -1,4 +1,4 @@
 package model.rule;
 
-public class ManhattanMoveRule {
+public class ManhattanMoveRule implements MoveRule {
 }

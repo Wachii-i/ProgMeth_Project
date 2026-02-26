@@ -1,4 +1,4 @@
 package model.rule;
 
-public class ManhattanAttackRule {
+public class ManhattanAttackRule implements AttackRule {
 }
