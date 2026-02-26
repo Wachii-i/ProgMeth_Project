@@ -1,4 +1,6 @@
 package model.core;
 
-public class Team {
+public enum Team {
+    TEAM_1,
+    TEAM_2
 }
