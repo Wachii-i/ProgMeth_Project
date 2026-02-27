@@ -11,6 +11,10 @@ public class Position {
         this.col = col;
     }
 
+    public Position translate(int dRow, int dCol) {
+        return new Position(this.row + dRow, this.col + dCol);
+    }
+
     public int getRow() {
         return row;
     }

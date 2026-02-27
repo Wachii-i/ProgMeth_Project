@@ -7,7 +7,7 @@ public abstract class Unit {
 
     //Fields
     private final String id;
-    private final Team team;
+    private final Team team;            //core.Team(ENUM)
     protected String name;
     protected int moveRange;
     protected int hp;
@@ -15,7 +15,8 @@ public abstract class Unit {
     protected int attackPower;
     private boolean movedThisTurn;
     private boolean attackedThisTurn;
-    private Position position;
+    private Position position;   //core.Position
+
     //Constructor
     public Unit(String id, Team team, Position position,int moveRange, int hp, int attackPower, int attackRange) {
         this.id = id;
@@ -29,6 +30,7 @@ public abstract class Unit {
         this.attackedThisTurn = false;
     }
     //Method
+    public String getId() { return id; }
     public abstract int computeDamage(Unit target);
     public boolean isAlive() { return hp > 0; }
     public void takeDamage(int dmg) {
