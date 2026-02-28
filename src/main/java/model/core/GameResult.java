@@ -35,7 +35,7 @@ public final class GameResult {
         return new GameResult(true, winner, reason);
     }
 
-    //getter
+    //=======getter=======
     public boolean isGameOver() {
         return gameOver;
     }
