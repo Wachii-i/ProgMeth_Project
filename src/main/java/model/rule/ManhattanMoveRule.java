@@ -8,26 +8,15 @@ public class ManhattanMoveRule implements MoveRule {
     @Override
     public boolean canMove(Unit unit, Position from, Position to) {
 
-        // กัน null
-        if (unit == null || from == null || to == null) {
-            return false;
-        }
+        if (unit == null || from == null || to == null) return false;
 
-        // ยูนิตต้องยังมีชีวิตและยังไม่เดินในเทิร์นนี้
-        if (!unit.canMove()) {
-            return false;
-        }
+        // กัน desync (แนะนำมาก)
+        if (!from.equals(unit.getPosition())) return false;
 
-        // ห้ามเดินอยู่กับที่
-        if (from.equals(to)) {
-            return false;
-        }
+        if (!unit.canMove()) return false;
 
-        // คำนวณ Manhattan Distance
-        int distance = Math.abs(from.getRow() - to.getRow())
-                + Math.abs(from.getCol() - to.getCol());
+        if (from.equals(to)) return false;
 
-        // เช็คระยะไม่เกิน moveRange
-        return distance <= unit.getMoveRange();
+        return unit.distanceTo(to) <= unit.getMoveRange();
     }
 }
