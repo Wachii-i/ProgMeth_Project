@@ -1,10 +1,10 @@
 package model.core;
 
 public enum Team {
-    TEAM_1,
-    TEAM_2;
+    RED,
+    BLUE;
 
     public Team opposite() {
-        return this == TEAM_1 ? TEAM_2 : TEAM_1;
+        return this == RED ? BLUE : RED;
     }
 }

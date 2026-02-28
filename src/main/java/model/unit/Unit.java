@@ -30,7 +30,7 @@ public abstract class Unit {
         this.attackedThisTurn = false;
     }
     //Method
-    public final void setPosition(Position newPos) throws Exception {
+    public final void setPosition(Position newPos) {
         if (newPos == null) throw new IllegalArgumentException("position cannot be null");
         this.position = newPos;
     }

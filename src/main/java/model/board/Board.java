@@ -62,6 +62,8 @@ public class Board {
         if (unit == null) throw new IllegalArgumentException("unit cannot be null");
         Cell cell = getCell(pos);
         cell.placeUnit(unit);
+
+        unit.setPosition(pos);
     }
 
     /** ลบยูนิตออกจากช่อง (เช่น ตอนตาย) */
@@ -94,5 +96,8 @@ public class Board {
         Unit unit = fromCell.getOccupant();
         fromCell.removeUnit();
         toCell.placeUnit(unit);
+
+        unit.setPosition(to);
+        unit.markMoved();
     }
 }
