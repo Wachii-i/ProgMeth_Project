@@ -5,12 +5,12 @@ import model.core.Team;
 
 public class King extends Unit {
 
-    //Constructor
     public King(String id, Team team, Position position) {
-        super(id, team, position, 1, 20, 2, 1);
-        this.name = "King";
+        super(id, team, position, 1, 100, 20, 1);
     }
-    //Method
+
     @Override
-    public int computeDamage(Unit target) { return this.attackPower; }
+    public int computeDamage(Unit target) {
+        return getAttackPower();
+    }
 }

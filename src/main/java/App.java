@@ -9,7 +9,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Board board = new Board();
+        Board board = new Board(6,6);
 
         GameScreen gameScreen = new GameScreen(board);
 
