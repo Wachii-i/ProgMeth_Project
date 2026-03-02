@@ -4,24 +4,28 @@ import controller.GameController;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import model.core.Position;
+import model.core.Team;
 import model.unit.Unit;
 
 public class CellView extends StackPane {
+
     private final Position position;
     private final Rectangle shape;
-    private Text unitText;
+    private final Text unitText;
+
+    private static final double CELL_SIZE = 60;
 
     public CellView(Position pos) {
         this.position = pos;
 
-        this.shape = new Rectangle(60, 60);
+        this.shape = new Rectangle(CELL_SIZE, CELL_SIZE);
         this.shape.setFill(Color.WHITE);
         this.shape.setStroke(Color.BLACK);
 
-        this.unitText = new Text(""); // เริ่มต้นเป็นช่องว่าง
+        this.unitText = new Text("");
         this.unitText.setFont(new Font(18));
 
         this.getChildren().addAll(shape, unitText);
@@ -31,19 +35,39 @@ public class CellView extends StackPane {
         });
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     public void setUnit(Unit unit) {
         if (unit == null) {
             unitText.setText("");
             shape.setFill(Color.WHITE);
-        } else {
-            unitText.setText(unit.getClass().getSimpleName().substring(0, 1));
+            return;
+        }
 
-            if (unit.getTeam().toString().equals("TEAM_1")) {
-                shape.setFill(Color.LIGHTBLUE);
-            } else {
-                shape.setFill(Color.LIGHTPINK);
-            }
+
+        unitText.setText(getDisplaySymbol(unit));
+
+
+        Team team = unit.getTeam();
+        if (team == Team.RED) {
+            shape.setFill(Color.LIGHTPINK);
+        } else if (team == Team.BLUE) {
+            shape.setFill(Color.LIGHTBLUE);
+        } else {
+            shape.setFill(Color.LIGHTGRAY);
         }
     }
 
+    // ===== helper =====
+    private String getDisplaySymbol(Unit unit) {
+        String name = unit.getClass().getSimpleName();
+
+
+        if (name == null || name.isEmpty()) return "?";
+
+
+        return name.substring(0, 1).toUpperCase();
+    }
 }
